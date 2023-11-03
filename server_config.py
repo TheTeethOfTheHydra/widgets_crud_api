@@ -1,0 +1,9 @@
+DATABASE_FILEPATH = 'widgets.db'
+ENABLE_TLS = False
+TLS_CERTFILE = '/nlp/aweber/snakeoil.pem'
+TLS_KEYFILE = '/nlp/aweber/snakeoil.key'
+LOG_FILEPATH = 'server.log'
+DATABASE_BACKUP_PERIOD_SECONDS = 60
+DATABASE_BACKUPS_FILEPATH = '/nlp/aweber/bak'
+SERVER_HOSTNAME_OR_IP = '127.0.0.1'
+SERVER_PORT = 8888

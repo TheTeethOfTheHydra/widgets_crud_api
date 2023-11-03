@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: Widgets CRUD API
+  version: 0.0.1
+paths:
+  /widgets:
+    get:
+      summary: Get a list of widgets
+      responses:
+        '200':
+          description: A list of widgets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Widget'
+    post:
+      summary: Create a new widget
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Widget'
+      responses:
+        '201':
+          description: Widget created successfully
+  /widgets/{widgetId}:
+    get:
+      summary: Get a widget by ID
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A widget
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+        '404':
+          description: Widget not found
+    put:
+      summary: Update a widget by ID
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Widget'
+      responses:
+        '200':
+          description: Widget updated successfully
+        '404':
+          description: Widget not found
+    delete:
+      summary: Delete a widget by ID
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Widget deleted successfully
+        '404':
+          description: Widget not found
+components:
+  schemas:
+    Widget:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the widget
+        name:
+          type: string
+          maxLength: 64
+          description: The name of the widget (UTF-8 string, max length: 64 characters)
+        parts:
+          type: integer
+          description: The number of parts in the widget
+        last_user:
+          type: string
+          maxLength: 64
+          description: The username of the API key bearer that performed the last write operation on the widget
+        created_date:
+          type: string
+          format: date
+          description: The date the widget was created (auto-set)
+        updated_date:
+          type: string
+          format: date
+          description: The date the widget was last updated (auto-set)
